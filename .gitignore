@@ -1,0 +1,39 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+venv/
+.env
+
+# Flask
+instance/
+*.db
+*.sqlite3
+
+# AWS S3
+s3_bucket/
+*.json
+*.yaml
+
+# Logs
+*.log
+
+# Tesseract
+*.traineddata
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# Video files
+*.mp4
+*.avi
+*.mov
+
+# Audio files
+*.wav
+
+# Misc
+.DS_Store
