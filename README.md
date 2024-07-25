@@ -1,11 +1,5 @@
-Got it! Here's a README tailored specifically for the microservices used in the Razee application.
-
----
-
-# Razee Microservices
-
+# Razee AI Engine - Microservices
 ## Overview
-
 This project consists of Flask-based microservices designed for the Razee application. It includes services for Optical Character Recognition (OCR), video-to-text conversion, and document processing using LangChain. AWS S3 is used for document storage, and the services are modular to support the needs of the Razee platform.
 
 ## Features
