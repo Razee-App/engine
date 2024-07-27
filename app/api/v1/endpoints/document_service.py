@@ -1,8 +1,8 @@
 from fastapi import APIRouter, UploadFile, File, HTTPException
 import boto3
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
-from config.config import Config
+from langchain_community.llms import OpenAI
+from app.core.config import Config
 
 router = APIRouter()
 config = Config()
