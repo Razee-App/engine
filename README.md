@@ -38,18 +38,18 @@ source venv/bin/activate
 
 Create a `requirements.txt` file with the following content:
 
-```
-fastapi
-uvicorn
-python-dotenv
-boto3
-langchain
-openai
-pinecone-client
-pytesseract
-moviepy
-pandas
-pytest
+```plaintext
+fastapi==0.68.2
+uvicorn==0.15.0
+python-dotenv==0.19.0
+boto3==1.18.0
+langchain==0.2.0
+langchain-community==0.2.0
+pytesseract==0.3.7
+Pillow==8.0.0
+moviepy==1.0.3
+speechrecognition==3.8.1
+pytest==6.2.4
 ```
 
 Then install the dependencies:
@@ -86,7 +86,7 @@ aws configure
 
 Create a `.env` file in the root directory and add your environment variables:
 
-```
+```plaintext
 SECRET_KEY=your_secret_key
 AWS_ACCESS_KEY_ID=your_aws_access_key_id
 AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
@@ -142,6 +142,7 @@ pytest app/tests/test_upload.py
 You can suppress deprecation warnings during testing by creating a `pytest.ini` file in the root of your project with the following content:
 
 **pytest.ini**:
+
 ```ini
 [pytest]
 filterwarnings =
@@ -199,10 +200,40 @@ your_project/
 
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
+## Known Issues
+
+### macOS Pydantic Core Compatibility
+
+Users on macOS may encounter issues with the `pydantic_core` package due to architecture incompatibility. If you encounter errors related to `pydantic_core`, try the following steps:
+
+1. Remove the existing virtual environment:
+   ```bash
+   deactivate
+   rm -rf venv
+   ```
+
+2. Create a new virtual environment ensuring the correct architecture:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+3. Install Rust for building some packages:
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   source $HOME/.cargo/env
+   ```
+
+4. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. Reinstall `pydantic_core` with the correct architecture:
+   ```bash
+   pip install pydantic-core==2.20.1 --force-reinstall --no-binary :all:
+   ```
+
 ## Contact
 
 For any questions or issues related to the Razee application, please contact nader@razee.app.
-
----
-
-This `README.md` should now provide a comprehensive guide to setting up, running, and testing your FastAPI microservices application.
