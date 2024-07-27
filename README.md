@@ -1,6 +1,8 @@
+
 # Razee AI Engine - Microservices
+
 ## Overview
-This project consists of Flask-based microservices designed for the Razee application. It includes services for Optical Character Recognition (OCR), video-to-text conversion, and document processing using LangChain. AWS S3 is used for document storage, and the services are modular to support the needs of the Razee platform.
+This project consists of FastAPI-based microservices designed for the Razee application. It includes services for Optical Character Recognition (OCR), video-to-text conversion, and document processing using LangChain. AWS S3 is used for document storage, and the services are modular to support the needs of the Razee platform.
 
 ## Features
 
@@ -37,7 +39,8 @@ source venv/bin/activate
 Create a `requirements.txt` file with the following content:
 
 ```
-flask
+fastapi
+uvicorn
 boto3
 langchain
 openai
@@ -45,6 +48,7 @@ pinecone-client
 pytesseract
 moviepy
 pandas
+python-dotenv
 ```
 
 Then install the dependencies:
@@ -81,18 +85,17 @@ LANGCHAIN_API_KEY=your_langchain_api_key
 
 ## Running the Application
 
-Start the Flask application with:
+Start the FastAPI application with:
 
 ```bash
-python run.py
+uvicorn main:app --reload
 ```
 
-The application will be accessible at `http://127.0.0.1:5000`.
+The application will be accessible at `http://127.0.0.1:8000`.
 
 ## Endpoints
 
 ### OCR Service
-
 - **Endpoint**: `/api/ocr`
 - **Method**: `POST`
 - **Description**: Convert images to text.
@@ -100,7 +103,6 @@ The application will be accessible at `http://127.0.0.1:5000`.
   - `file`: The image file to process.
 
 ### Video-to-Text Service
-
 - **Endpoint**: `/api/video-to-text`
 - **Method**: `POST`
 - **Description**: Convert video streams to text.
@@ -108,7 +110,6 @@ The application will be accessible at `http://127.0.0.1:5000`.
   - `file`: The video file to process.
 
 ### Document Service
-
 - **Endpoint**: `/api/upload-document`
 - **Method**: `POST`
 - **Description**: Upload and process documents.
@@ -116,9 +117,8 @@ The application will be accessible at `http://127.0.0.1:5000`.
   - `file`: The document file to upload.
 
 ## File Structure
-
 - `app/`
-  - `__init__.py`: Initialize Flask application and register blueprints.
+  - `__init__.py`: Initialize FastAPI application and register routers.
   - `ocr_service.py`: Service for OCR processing.
   - `video_service.py`: Service for video-to-text conversion.
   - `document_service.py`: Service for document processing and annotation.
@@ -129,17 +129,13 @@ The application will be accessible at `http://127.0.0.1:5000`.
   - `__init__.py`: Initialize model components.
   - `langchain_model.py`: LangChain model integration.
   - `pinecone_model.py`: Pinecone model integration.
-- `run.py`: Entry point to start the Flask application.
+- `main.py`: Entry point to start the FastAPI application.
 - `.gitignore`: Git ignore configuration.
 - `requirements.txt`: List of Python dependencies.
 - `.env`: Environment variables configuration.
 
 ## Contributing
-
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
-
 ## Contact
-
 For any questions or issues related to the Razee application, please contact nader@razee.app.
-
