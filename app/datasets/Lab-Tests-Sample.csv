@@ -1,0 +1,314 @@
+Test ID,CPT Code,Test Name,Sample Type,Container,TAT,Price (AED)
+5104873,85025,CBC with 5 Part Differential,Whole Blood,"Lavender, EDTA",24H,AED 11.50
+5108481,84466,"Anemia Profile (Transferrin, TSI, Iron, Ferr, TIBC, UIBC)",Serum / Plasma,"Gold, SST",24H,AED 50.00
+5104862,82565,"Kidney Function Test (Crea, Urea, Uric, BUN, eGFR)",Serum / Plasma,"Gold, SST",24H,AED 50.00
+5104878,80061,"Lipid Profile (Total Cholesterol, HDL, LDL, VLDL, Non-HDL, Trig, Trig/HDL Ratio, LDL/HDL Ratio)",Serum / Plasma,"Gold, SST",24H,AED 31.50
+5104892,84460,"Liver Function Test (ALT, AST, ALP, GGT, Total Bilirubin, Total Protein, Alb, Glob, A/G Ratio)",Serum / Plasma,"Gold, SST",24H,AED 37.50
+5104896,84481,"Thyroid Function Test (FT3, FT4, TSH)",Serum/Plasma,"Gold, SST",24H,AED 62.50
+5104813,82435,"Electrolytes (Na, K, Cl)",Serum / Plasma,"Gold, SST",24H,AED 35.00
+5104925,83036,HbA1c,Whole Blood,"Lavender, EDTA",24H,AED 32.50
+5104785,82306,"Vitamin D, Total",Serum,"Gold, SST",24H,AED 38.50
+5109034,87177,Routine Stool Analysis,"Stool, 5g","Plastic Container, Non-Sterile",24H,AED 15.00
+5104867,81001,Routine Urine Analysis,"Urine, Mid-Stream","Plastic Container, Non-Sterile",24H,AED 15.00
+5118474,83498,17-Hydroxy-Progesterone,Serum / Plasma,"Gold, SST",4 Days,AED 95.00
+5118466,-,3-Alpha-Androstandiol Glucuronide,Serum,"Gold, SST",28 Days,AED 150.00
+423,87301,"Adenovirus Antigen, Stool","Stool, 5g","Plastic Container, Non-Sterile",24H,AED 35.00
+5118492,82024,"Adrenocorticotropic Hormone, ACTH After 6PM",Serum / Plasma,"Lavender, EDTA",5 Days,AED 131.50
+5118491,82024,"Adrenocorticotropic Hormone, ACTH Before 10AM",Serum / Plasma,"Lavender, EDTA",5 Days,AED 131.50
+5109017,84460,"Alanine Transaminase, ALT",Serum / Plasma,"Gold, SST",24H,AED 11.00
+5109024,82040,Albumin,Serum / Plasma,"Gold, SST",24H,AED 12.00
+5104845,"82043, 82570","Albumin / Creatinine, Urine","Urine, Mid-Stream","Plastic Container, Non-Sterile",24H,AED 35.00
+5118465,"82040, 90291",Albumin / Globulin Ratio,Serum / Plasma,"Gold, SST",24H,AED 20.00
+424,82085,Aldolase,Serum,"Gold, SST",10 Days,AED 145.00
+5104791,82088,"Aldosterone, Supine",Serum,"Gold, SST",3-5 Days,AED 100.00
+5104795,82088,"Aldosterone, Upright",Serum,"Gold, SST",3-5 Days,AED 100.00
+5109019,84075,"Alkaline Phosphatase, ALP",Serum / Plasma,"Gold, SST",24H,AED 11.00
+5104799,86003 x 44,"Allergy Test, 44 Food Allergens",Serum,"Gold, SST",3 Days,AED 200.00
+5104803,86003 x 47,"Allergy Test, 47 Inhalant Allergens",Serum,"Gold, SST",3 Days,AED 200.00
+5104938,82105,"Alpha-Fetoprotein, AFP",Serum,"Gold, SST",2 Days,AED 55.00
+5104942,82150,"Amylase, Serum",Serum / Plasma,"Gold, SST",2 Days,AED 20.00
+409,86038,ANA IFT Screening,Serum,"Gold, SST",24H,AED 45.00
+5104949,86235 x 8,ANA Profile (8 Antigens),Serum,"Gold, SST",7 Days,AED 185.00
+5104946,86235 x 5,ANA Screening (5 Antigens),Serum,"Gold, SST",7 Days,AED 125.00
+5104810,"83516 x 2, 86036","ANCA Screening (cANCA, MPO, PR3)",Serum,"Gold, SST",1-2 Days,AED 158.50
+5104812,82157,Androstendione,Serum / Plasma,"Gold, SST",7 Days,AED 62.50
+5104817,86200,"Anti Cyclic Citrullinated Peptides, Anti CCP Abs",Serum,"Gold, SST",24H,AED 62.50
+5104819,83520,"Anti Mullerian Hormone, AMH",Serum,"Gold, SST",24H,AED 104.50
+5104824,89325,"Anti Sperm Abs in Blood, IgA & IgG Abs",Serum,"Red, Plain",10-14 Days,AED 110.00
+5104766,86060,Anti Streptolysin O Titre (ASOT),Serum,"Gold, SST",24H,AED 18.00
+410,86255,Anti-Mitochondrial M2 Abs (AMA-M2),Serum,"Gold, SST",24H,AED 95.00
+5109192,N/A,"Anti-Oxidative Capacity, Total",Serum,"Gold, SST",7 Days,AED 187.50
+411,86255,Anti-Smooth Muscle Abs (ASMA),Serum,"Gold, SST",10 Days,AED 80.00
+389,85303,Anticoagulant Protein C Activity,Plasma,"Blue, 3.2% Sodium Citrate",7 Days,AED 160.00
+388,85306,Anticoagulant Protein S Activity,Plasma,"Blue, 3.2% Sodium Citrate",7 Days,AED 152.50
+5104767,85300,"Antithrombin III Activity, AT3",Plasma,"Blue, 3.2% Sodium Citrate",10-14 Days,AED 62.50
+5104881,82172,Apolipoprotein A-1,Serum,"Gold, SST",24H,AED 46.50
+5104887,82172 x 2,Apolipoprotein A-1 / Apolipoprotein B Ratio,Serum,"Gold, SST",24H,AED 87.50
+5104884,82172,Apolipoprotein B,Serum,"Gold, SST",24H,AED 46.50
+5109018,84450,"Aspartate Aminotransferase, AST",Serum / Plasma,"Gold, SST",24H,AED 12.00
+5104769,84702,Beta HCG,Serum / Plasma,"Gold, SST",24H,AED 30.00
+5104772,82232,Beta II Microglobulin,Serum,"Gold, SST",10-14 Days,AED 71.50
+5118476,82374,"Bicarbonate, CO2 in Serum",Serum,"Gold, SST",24H,AED 12.50
+5109230,82248,"Bilirubin, Direct",Serum / Plasma,"Light Protected Gold, SST",24H,AED 12.50
+5118463,82248,"Bilirubin, Indirect",Serum / Plasma,"Light Protected Gold, SST",24H,AED 25.00
+5109021,82247,"Bilirubin, Total",Serum / Plasma,"Light Protected Gold, SST",24H,AED 12.50
+391,85007,Blood Film / Peripheral Smear,Whole Blood,"Lavender, EDTA",24H,AED 15.00
+5104776,86900; 86901,Blood Group (ABO & Rh Type),Whole Blood,"Lavender, EDTA",24H,AED 12.50
+392,84520,"Blood Urea Nitrogen, BUN",Serum,"Gold, SST",24H,AED 12.00
+5104955,87206,"Body Tissue, KOH Slide Preparation",Variant,"Plastic Container, Sterile",10-14 Days,AED 49.50
+5104932,86622 x 2,"Brucella Screening, IgG & IgM Abs",Serum,"Red, Plain",10-14 Days,AED 125.00
+5104936,84681,C Peptide,Serum / Frozen,"Gold, SST",24H,AED 50.00
+5118458,86141,"C-Reactive Protein, High Sensitivity",Serum,"Gold, SST",24H,AED 55.00
+5104940,86140,"C-Reactive Protein, Semi-Quantitative",Serum / Plasma,"Gold, SST",24H,AED 15.00
+5104768,82308,Calcitonin,Serum,"Gold, SST",7 Days,AED 62.50
+5104773,82310,"Calcium, Total",Serum / Plasma,"Gold, SST",24H,AED 10.50
+5104778,82340,"Calcium, Urine","Urine, 24H Sample","Plastic Container, Non-Sterile",7 Days,AED 20.00
+5104784,83993,"Calprotectin, Stool","Stool, 5g","Plastic Container, Non-Sterile",24H,AED 70.00
+5104870,86304,"Cancer Antigen, CA 125",Serum,"Gold, SST",24H,AED 37.50
+5104874,86300,"Cancer Antigen, CA 15-3",Serum,"Gold, SST",24H,AED 37.50
+5104877,86301,"Cancer Antigen, CA 19-9",Serum,"Gold, SST",24H,AED 37.50
+5104880,86316,"Cancer Antigen, CA 72-4",Serum,"Gold, SST",7 Days,AED 82.50
+5104883,82378,"Carcinoembryonic Antigen, CEA",Serum,"Gold, SST",24H,AED 37.50
+5104814,86147 x 2,"Cardiolipin, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 100.00
+5104821,86631 x 2,"Chlamydia Pneumoniae, IgA & IgG Abs",Serum,"Gold, SST",10-14 Days,AED 220.00
+416,86632,Chlamydia Psittaci IgG & IgA,Gold,SST,21 Days,AED 540.00
+415,87491;87492,Chlamydia Trachomatis PCR,"Swab, Sterile",6 Days,AED 225.00,
+425,87270,"Chlamydia, Antigen","Urine, Mid-Stream","Plastic Container, Sterile",24H,AED 35.00
+5104827,82480,"Cholinesterase, CHE",Serum,"Green, Heparin",7-10 Days,AED 66.50
+5118467,82495,"Chromium, Cr, Serum",Serum,Heavy Metal Container,13 Days,AED 175.00
+5109232,87324,Clostridium Difficile Toxin A & B,"Stool, 5g","Plastic Container, Non-Sterile",3 Days,AED 80.00
+5104829,86160,Complement C3,Serum / Plasma,"Gold, SST",24H,AED 29.50
+5104832,86160,Complement C4,Serum / Plasma,"Gold, SST",24H,AED 29.50
+5104839,82525,"Copper, Cu",Serum,"Red, Plain",24H,AED 35.50
+5104843,82533,Cortisol (After 5PM),Serum / Plasma,"Gold, SST",24H,AED 40.00
+5104789,82533,Cortisol (Before 10AM),Serum / Plasma,"Gold, SST",24H,AED 40.00
+414,83520;82626,Cortisol Awakening Response in Saliva,"Saliva, Frozen",Special Container,15 Days,AED 465.00
+5104792,82530,"Cortisol, Free (Urine)","Urine, 24H Sample","Plastic Container, Non-Sterile",7 Days,AED 82.50
+417,86631,Coxiella IgG & IgM Phase II,-,"Gold, SST",14 Days,AED 450.00
+5109198,"82550, 82553","Creatine Kinase, CK-MB",Serum,"Gold, SST",24H,AED 48.50
+5104796,82550,"Creatine Kinase, CPK/CK",Serum,"Gold, SST",24H,AED 16.50
+5104800,82552,"Creatine Kinase, Iso-Enzymes",Serum,"Gold, SST",7-10 Days,AED 180.00
+5108999,82565,Creatinine,Serum / Plasma,"Gold, SST",24H,AED 12.50
+5109173,82570,"Creatinine, Urine","Urine, Mid-Stream","Plastic Container, Non-Sterile",24H,AED 20.00
+5109037,87070,"Culture and Sensitivity, Abcess",Blood,"Swab, Sterile",3 Days,AED 50.00
+5104810,87040,"Culture and Sensitivity, Blood",Blood,"Plastic Container, Sterile",7 Days,AED 82.50
+5104804,87070,"Culture and Sensitivity, Body Fluid",Various,"Plastic Container, Sterile",3 Days,AED 50.00
+5104802,87070,"Culture and Sensitivity, Ear Swab",Ear Swab,"Swab, Sterile",3 Days,AED 50.00
+5104806,87101,"Culture and Sensitivity, Fungal",Various,"Plastic Container, Sterile",10-14 Days,AED 100.00
+5104808,87070,"Culture and Sensitivity, Genital",Various,"Swab, Sterile",3 Days,AED 50.00
+5104811,87070,"Culture and Sensitivity, HVS Vaginal, Cervix","Swab, Sterile",3 Days,AED 50.00,
+5104842,"87045, 87046, 87427","Culture and Sensitivity, Stool","Stool, 5g","Plastic Container, Non-Sterile",3 Days,AED 50.00
+5104815,"87116, 87206","Culture and Sensitivity, TB Culture (Strictly on a Send Out Basis)",Sputum,"Plastic Container, Sterile",70 Days,AED 275.00
+5104846,87070,"Culture and Sensitivity, Throat Swab",Throat Swab,"Swab, Sterile",3 Days,AED 50.00
+5104848,87086,"Culture and Sensitivity, Urine","Urine, Mid-Stream","Plastic Container, Sterile",3 Days,AED 50.00
+5104855,86316,Cyfra 21-1,Serum,"Gold, SST",7 Days,AED 117.50
+5104956,82610,Cystatin C,Serum,"Gold, SST",7-10 Days,AED 75.00
+402,86645,Cytomegalovirus IgG,Serum,"Gold, SST",24H,AED 40.00
+403,86644,Cytomegalovirus IgM,Serum,"Gold, SST",24H,AED 40.00
+5104960,86644,"Cytomegalovirus, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 70.00
+5104963,85379,D-Dimer,Plasma,"Blue, 3.2% Sodium Citrate",24H,AED 50.00
+5104967,82627,"Dehydroepiandrosterone Sulfate, DHEA-S",Serum,"Gold, SST",24H,AED 37.50
+5104971,80307,"Drugs of Abuse (Qualitative), Urine","Urine, Mid-Stream","Plastic Container, Non-Sterile",24H,AED 52.50
+5104809,86225,dsDNA Abs,Serum,"Gold, SST",24H,AED 60.00
+5109010,82435,"Electrolytes, Chlorine, Cl",Serum / Plasma,"Gold, SST",24H,AED 12.50
+5109009,84132,"Electrolytes, Potassium, K",Serum / Plasma,"Gold, SST",24H,AED 12.50
+5109008,84295,"Electrolytes, Sodium, Na",Serum / Plasma,"Gold, SST",24H,AED 12.50
+390,86235 x 15,ENA Profile (15 Antigens),Serum,"Gold, SST",2 Days,AED 136.00
+5104816,86256,"Endomysial, IgA & IgG Abs",Serum,"Gold, SST",7-10 Days,AED 87.50
+5104820,86753,Entamoeba Histolytica Antigen,"Stool, 5g","Plastic Container, Non-Sterile",3 Days,AED 56.50
+5104825,86665,"Epstein Barr Virus (EBV) Abs (EA, EBNA, VCA IgG+IgM)",Serum,"Gold, SST",24H,AED 250.00
+436,82542,"Estimated Glomerular Filtration Rate, eGFR",Serum,"Gold, SST",24H,AED 13.50
+5104861,85652,"Erythrocyte Sedimentation Rate, ESR",Whole Blood,"Lavender, EDTA",24H,AED 14.50
+426,82668,Erythropoietin,Serum,"Gold, SST",10-14 Days,AED 330.00
+5104782,82670,"Estradiol, E2",Serum / Plasma,"Gold, SST",24H,AED 35.00
+5104786,82677,"Estriol, E3",Serum,"Gold, SST",7-10 Days,AED 100.00
+5104798,85210,"Factor II, Prothrombin","Plasma, Pool PLT","Blue, 3.2% Sodium Citrate",7-10 Days,AED 60.00
+5104866,85220,"Factor V, Leiden","Plasma, Pool PLT","Blue, 3.2% Sodium Citrate",7-10 Days,AED 60.00
+5104869,82274,Fecal Occult Blood,"Stool, 5g","Plastic Container, Non-Sterile",24H,AED 12.50
+5109007,82728,Ferritin,Serum / Plasma,"Gold, SST",24H,AED 15.00
+5104872,85384,Fibrinogen,Plasma PLT Free,"Blue, 3.2% Sodium Citrate",24H,AED 35.50
+5104876,81508,"First Trimester, Prenatal Screening",Serum,"Red, Plain",3 Days,AED 210.00
+5118468,82735,"Fluoride, Fl, Serum",Serum / Plasma,"Gold, SST",14 Days,AED 315.00
+5104879,83001,"Follicle Stimulating Hormone, FSH",Serum / Plasma,"Gold, SST",24H,AED 35.00
+5104895,86003 x 220,Food Intolerance Test - 220 Parameters,Serum,"Gold, SST",3 Days,AED 800.00
+396,86003 x 286,Food Intolerance Test - 286 Parameters,Serum,"Gold, SST",3 Days,AED 800.00
+5104992,"84270, 84403",Free Androgen Index,Serum,"Gold, SST",24H,AED 70.00
+5109004,84439,"Free Thyroxine, FT4",Serum,"Gold, SST",24H,AED 25.00
+5109005,84481,"Free Triiodothyronine, FT3",Serum/Plasma,"Gold, SST",24H,AED 25.00
+5109020,82977,"Gamma Glutamyl Transferase, GGT",Serum / Plasma,"Gold, SST",24H,AED 13.00
+427,82941,Gastrin,Serum,"Gold, SST",10-14 Days,AED 175.00
+5104826,83516,GBM (Glomerular Basalmembrane Abs),Serum,"Gold, SST",7 Days,AED 107.50
+5104828,86258,"Gliadin IgA Abs, Deamidated Screening",Serum,"Gold, SST",24H,AED 90.00
+186,86258,"Gliadin IgG Abs, Deamidated Screening",Serum,"Gold, SST",24H,AED 90.00
+5118464,90291,Globulin,Serum / Plasma,"Gold, SST",24H,AED 15.00
+5104831,82950,"Glucose Challenge Test, Fasting Glucose & Glucose Test 1Hr After 50g Glucose",Plasma,"Gold, SST",24H,AED 18.50
+5104835,82951,"Glucose Tolerance Test, 2 Hours, oGTT (F, 1hr, 2hr)",Plasma,"Gold, SST",24H,AED 26.50
+5104889,82952,"Glucose Tolerance Test, 3 Hours, oGTT (F, 1hr, 2hr, 3hr)",Plasma,"Gold, SST",24H,AED 35.00
+5104893,82955,Glucose-6-Phosphate Dehydrogenase,Whole Blood,"Lavender, EDTA",24H,AED 42.50
+5104897,82947,"Glucose, Fasting",Plasma,"Gold, SST",24H,AED 9.00
+5104901,82950,"Glucose, Post-Prandial",Plasma,"Gold, SST",24H,AED 9.00
+5104904,82947,"Glucose, Random",Plasma,"Gold, SST",24H,AED 9.00
+5104912,82945,"Glucose, Urine","Urine, Mid-Stream","Plastic Container, Non-Sterile",24H,AED 15.00
+5104917,86341,"Glutamic Acid Decarboxylase, GAD Abs",Serum,"Gold, SST",14-21 Days,AED 115.00
+5109067,87205,Gram Stain,Various,"Plastic Container, Sterile",24H,AED 15.00
+5104921,83003,Growth Hormone,Serum,"Gold, SST",7 Days,AED 75.00
+5109027,83718,HDL Cholesterol,Serum / Plasma,"Gold, SST",24H,AED 13.00
+420,Heavy Metals & Minerals in Blood - 13 Parameters,Whole Blood & Serum,Special Container,,10 Days,"AED 1,200.00"
+419,Heavy Metals & Minerals in Hair - 40 Parameters,"Hair, 1g","Plastic Container, Sterile",,15 Days,AED 750.00
+421,Heavy Metals & Minerals in Urine - 21 Parameters,"Urine, 24H Sample",Special Container,,21 Days,"AED 1,100.00"
+5104927,87338,Helicobacter Pylori Antigen,"Stool, 5g","Plastic Container, Non-Sterile",24H,AED 25.00
+5118493,"83013, 83014",Helicobacter Pylori Urea Breath Test - C13,Breath in UBT Bag,Breath Bag,24H,AED 250.00
+5113490,83021,"Hemaglobin Electrophoresis, Hb-HPLC",Whole Blood,"Lavender, EDTA",4 Days,AED 60.00
+5104976,"86708, 86709","Hepatitis A Virus, IgG, IgM & Total Abs",Serum,"Gold, SST",5-7 Days,AED 85.00
+5118461,86708,"Hepatitis A Virus, Total Abs",Serum,"Gold, SST",24H,AED 50.00
+5109171,86705,Hepatitis B Core Antibody (HBcAb),Serum,"Gold, SST",24H,AED 50.00
+5104979,"86704, 86705","Hepatitis B core Virus, IgM & Total Abs",Serum,"Gold, SST",24H,AED 60.00
+5104985,87350,Hepatitis B e Antigen (HBeAg),Serum,"Gold, SST",24H,AED 45.00
+5104982,86707,Hepatitis B e Virus Abs,Serum,"Gold, SST",5-7 Days,AED 45.00
+5118414,87340,Hepatitis B Surface (HBsAg),Serum / Plasma,"Gold, SST",24H,AED 35.00
+5104937,86706,Hepatitis B Surface Antibody (HBsAb) (Vaccination titer),Serum / Plasma,"Gold, SST",24H,AED 35.50
+5104941,87517,Hepatitis B Virus DNA PCR (Quantitative),Serum,"Gold, SST",10 Days,AED 250.00
+408,86803,"Hepatitis C Virus Abs, Total",Serum,"Gold, SST",24H,AED 35.00
+5104980,87522,Hepatitis C Virus RNA PCR (Qualitative),Serum,"Gold, SST",10 Days,AED 175.00
+5104983,87522,Hepatitis C Virus RNA PCR (Quantitative),Serum,"Gold, SST",10 Days,AED 300.00
+5118462,86803,"Hepatitis C Virus, IgG Abs",Serum / Plasma,"Gold, SST",24H,AED 40.00
+404,86695,Herpes Simplex I IgG,Serum,"Gold, SST",24H,AED 45.00
+405,86695,Herpes Simplex I IgM,Serum,"Gold, SST",24H,AED 45.00
+406,86696,Herpes Simplex II IgG,Serum,"Gold, SST",24H,AED 45.00
+407,86696,Herpes Simplex II IgM,Serum,"Gold, SST",24H,AED 45.00
+5104986,"86695, 86696","Herpes Simplex Virus I + II, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 150.00
+5104989,86695,"Herpes Simplex Virus I, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 80.00
+428,87529,"Herpes Simplex Virus I, PCR, Quantitative",Whole Blood,"Lavender, EDTA",3 Days,AED 112.50
+5104939,86696,"Herpes Simplex Virus II, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 80.00
+429,87529,"Herpes Simplex Virus II, PCR, Quantitative",Whole Blood,"Lavender, EDTA",3 Days,AED 112.50
+5104952,87389,"HIV I & II + p24 Combo Screening, Ag/Ab",Serum,"Gold, SST",24H,AED 37.50
+5104837,"86701, 86702","HIV I & II, Abs, Western Blot, Confirmatory",Serum,"Gold, SST",3 Days,AED 500.00
+5118475,87536,"HIV-1, Quantitative",Whole Blood,"Lavender, EDTA",8 Days,AED 500.00
+5118469,81374,HLA Typing - B27 (PCR),Whole Blood,"Lavender, EDTA",14 Days,AED 325.00
+5118490,"83525, 82947","HOMA Estimated Insulin Resistance, HOMA-IR",Serum,"Gold, SST",24H,AED 65.50
+5104844,83090,Homocysteine,Serum,"Gold, SST",24H,AED 60.00
+5104847,87624,"Human Papilloma Virus, HPV PCR",Cervical / Anal / Vaginal,ThinPrep Collection Kit,3 Days,AED 165.00
+5118470,83520,IGFBP-3 Growth Panel,Serum,"Gold, SST",14 Days,AED 55.00
+5104911,82784,"Immunoglobulin, IgA Abs, Total",Serum,"Gold, SST",24H,AED 25.00
+5104909,82785,"Immunoglobulin, IgE Abs, Total",Serum,"Gold, SST",24H,AED 25.00
+5109169,82784,"Immunoglobulin, IgG Abs, Total",Serum,"Gold, SST",24H,AED 25.00
+5109170,82784,"Immunoglobulin, IgM Abs, Total",Serum,"Gold, SST",24H,AED 25.00
+5104923,86880,"Indirect Coombs Test, ICT",Serum,"Gold, SST",24H,AED 17.50
+5104886,87400,"Influenza Virus A & B, Antigen","Swab, Throat","Swab, Sterile",24H,AED 37.50
+5104890,87804 x 2,"Influenza Virus A & B, Direct Immunoassay",Serum,"Gold, SST",3 Days,AED 400.00
+383,83520,Inhibin B,Serum,"Gold, SST",14-21 Days,AED 275.00
+5104894,"83525, 82947",Insulin,Serum / Plasma,"Gold, SST",24H,AED 35.50
+5104898,86337,Insulin Abs,Serum / Plasma,"Gold, SST",7-10 Days,AED 87.50
+5104899,84305,"Insulin like Growth Factor, IGF I",Serum,"Gold, SST",7-10 Days,AED 100.00
+5104945,"83525, 82947",Insulin Resistance Test,Serum,"Gold, SST",1-2 Days,AED 60.00
+5104948,83970,"Intact Parathyroid Hormone, iPTH",Serum,"Gold, SST",24H,AED 55.00
+5104951,85610,"International Normalised Ratio, INR",Plasma,"Blue, 3.2% Sodium Citrate",24H,AED 15.50
+430,86340,Intrinsic Factor Abs,Serum,"Gold, SST",21 Days,AED 330.00
+5109000,83540,Iron,Serum / Plasma,"Gold, SST",24H,AED 12.50
+394,"88230, 88262, 88269",Karyotyping - Chromosomal Analysis,Whole Blood,"Green, Heparin",25 Days,AED 600.00
+5104959,83615,"Lactate Dehydrogenase, LDH",Serum / Plasma,"Gold, SST",24H,AED 20.00
+5109233,83631,Lactoferrin,Stool,"Stool, 5g, Plastic Container, Non-Sterile",3 Days,AED 80.00
+5104849,83690,Lipase,Serum,"Gold, SST",24H,AED 25.00
+5104852,83695,"Lipoprotein A, LPA",Serum,"Gold, SST",24H,AED 38.50
+5104856,86723,Listeria Abs,Serum,"Gold, SST",10-14 Days,AED 190.00
+5104859,80178,"Lithium, Li",Serum,"Gold, SST",7-10 Days,AED 100.00
+5104863,86376,"Liver Kidney Microsome Abs, LKM Abs",Serum,"Gold, SST",24H,AED 80.00
+5104830,"85732, 85613",Lupus Anticoagulant Profile,Plasma,"Blue, 3.2% Sodium Citrate",7-10 Days,AED 187.50
+5109032,83002,"Lutenizing Hormone, LH",Serum / Plasma,"Red, Plain",24H,AED 35.00
+5104834,83735,"Magnesium, Mg",Serum / Plasma,"Gold, SST",24H,AED 11.50
+431,"Malaria Antibody, Total, Quantitative",Whole Blood,"Lavender, EDTA",14-21 Days,AED 180.00,
+5104838,87207,"Malaria Antigen, Smear & Antigen Test",Whole Blood,"Lavender, EDTA",24H,AED 50.00
+5118471,83785,"Manganese, Mn, Serum",Serum,"Gold, SST",7 Days,AED 115.00
+5104841,86765,"Measles, IgG & IgM Abs",Serum,"Gold, SST",7 Days,AED 120.00
+385,81291,"MTHFR A1298C, Real time PCR",Whole Blood,"Lavender, EDTA",9 Days,AED 355.00
+386,81291,"MTHFR C677T, Real-time PCR",Whole Blood,"Lavender, EDTA",9 Days,AED 355.00
+387,81291,"MTHFR Combined (A1298C + C677T), Real Time PCR",Whole Blood,"Lavender, EDTA",7 Days,AED 600.00
+5104957,86735 x 2,"Mumps Virus, IgG & IgM Abs",Serum,"Gold, SST",7 Days,AED 120.00
+5104961,86738,"Mycoplasma Pneumonia, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 115.00
+5118472,83874,Myoglobin,Serum,"Gold, SST",7 Days,AED 102.50
+5118473,83874,"Myoglobin, Quantitative, Urine","Urine, Mid-Stream","Plastic Container, Non-Sterile",7 Days,AED 175.00
+5104964,86316,"Neuron Specific Enolase, NSE",Serum,"Gold, SST",10-14 Days,AED 148.50
+5118489,"81420, 81422, 81479, 81507","Non Invasive Prenatal Test (NIPT), Advanced (Trisomy 13, 18, 21, 9, 16, 22)",Whole Blood,Special Container,7-10 Days,"AED 1,750.00"
+5118488,81420,"Non Invasive Prenatal Test (NIPT), Basic (Trisomy 13, 18 & 21)",Whole Blood,Special Container,7-10 Days,"AED 1,450.00"
+5109197,83880,NT-Pro BNP,Serum,"Gold, SST",24H,AED 300.00
+5109191,N/A,"Oxidative Capacity, Total",Serum,"Gold, SST",7 Days,AED 187.50
+412,-,Oxidised LDL,Serum,"Gold, SST",28 Days,AED 500.00
+5104968,82150,Pancreatic Amylase,Serum / Plasma,"Gold, SST",7 Days,AED 99.50
+5104919,88142,Pap Smear Cervical (Liquid Based Cytology),ThinPrep Collection Kit,ThinPrep Collection Kit,3-5 Days,AED 145.00
+5104924,85730,"Partial Thromboplastin Time, PTT",Plasma,"Blue, 3.2% Sodium Citrate",24H,AED 17.50
+5104926,86148 x 2,"Phospholipid, IgG & IgM Abs",Serum,"Gold, SST",24H,AED 103.50
+5104931,84100,"Phosphorus, Ph, Serum",Serum / Plasma,"Gold, SST",24H,AED 11.50
+5104934,84105,"Phosphorus, Ph, Urine (24h)","Urine, 24H Sample","Plastic Container, Non-Sterile",3 Days,AED 20.00
+397,84140,Pregnenolone,Serum,"Gold, SST",28 Days,AED 600.00
+5104902,84144,Progesterone,Serum,"Gold, SST",24H,AED 32.50
+5104771,84146,Prolactin,Serum,"Gold, SST",24H,AED 32.50
+5104775,84154,"Prostate Specific Antigen, Free",Serum / Plasma,"Gold, SST",24H,AED 45.00
+5104779,84153,"Prostate Specific Antigen, Total",Serum / Plasma,"Gold, SST",24H,AED 35.50
+5104783,85610,"Prothrombin Time, PT",Plasma,"Blue, 3.2% Sodium Citrate",24H,AED 15.50
+433,82747,"Red Blood Cell, Folate",Whole Blood,"Lavender, EDTA",10-14 Days,AED 180.00
+413,84244,Renin Acivity,"Whole Blood, Frozen","Lavender, EDTA",10 Days,AED 225.00
+422,87633,Respiratory Pathogen Panel,"Swab, Nasal","Swab, Sterile",3 Days,AED 500.00
+434,86757,"Respiratory Syncytial Virus RSV, Antigen Screening","Swab, Nasal","Swab, Sterile",24H,AED 35.00
+5104787,85045,Reticulocyte Count,Whole Blood,"Lavender, EDTA",24H,AED 13.50
+5104965,86431,"Rheumatoid Factor, RF",Serum,"Gold, SST",24H,AED 20.00
+5104969,86759,"Rotavirus Antigen, Stool","Stool, 5g Plastic Container, Non-Sterile",,24H,AED 45.00
+398,86762,Rubella IgG,"Serum Gold, SST",,24H,AED 50.00
+399,86762,Rubella IgM,"Serum Gold, SST",,24H,AED 50.00
+5104972,87425,"Rubella, IgG & IgM Abs","Serum Gold, SST",,24H,AED 60.00
+5109002,86768,"Salmonella Abs, Quantitative WIDAL","Serum Gold, SST",,24H,AED 35.00
+5109167,"84702, 82105","Second Trimester, Prenatal Screening","Serum Red, Plain",,7-10 Days,AED 250.00
+5118484,84255,"Selenium, Se, Serum","Serum / Plasma Gold, SST",,20 Days,AED 149.50
+5104958,89320,Semen Analysis,"Semen Plastic Container, Sterile",,24H,AED 35.00
+5104962,84270,"Sex Hormone Binding Globulin, SHBG","Serum Gold, SST",,24H,AED 35.00
+384,85660,Sickle Cell Solubility Test,"Whole Blood Lavender, EDTA",,24H,AED 45.00
+395,87070,Sputum Microscopy - Gram Stain & Ziehl Nielhson,"Sputum Plastic Container, Sterile",,4 Days,AED 25.00
+432,87880,"Streptococcus Group A, Antigen Screening","Swab, Throat Swab, Sterile",,24H,AED 35.00
+5104966,86780,"Syphilis, TPHA","Serum Gold, SST",,24H,AED 35.50
+5104788,86592,"Syphilis, VDRL","Serum Gold, SST",,24H,AED 20.00
+5118483,84482,"T3 Reverse, RT3","Serum Red, Plain",,9 Days,AED 450.00
+393,"86480, 86481",TB - Quantiferon Test,Serum Special Container,,2 Days,AED 300.00
+5104793,84402,"Testosterone, Free","Serum Gold, SST",,24H,AED 35.00
+5104797,84403,"Testosterone, Total","Serum Gold, SST",,24H,AED 35.00
+5112327,85670,Thrombin Time,"Plasma Blue, 3.2% Sodium Citrate",,7 Days,AED 44.50
+5104906,86800,"Thyroglobulin Antibodies, TgAb","Serum Gold, SST",,24H,AED 40.00
+5104858,84432,"Thyroglobulin, Tg","Serum Gold, SST",,24H,AED 40.00
+5104854,86376,"Thyroid Peroxidase, TPOAb","Serum Gold, SST",,24H,AED 40.00
+5109006,84443,"Thyroid Stimulating Hormone, TSH","Serum / Plasma Gold, SST",,24H,AED 25.00
+418,84445,"Thyroid Stimulating Immunoglobulins, TSI","Serum Gold, SST",,10 Days,AED 275.00
+5104805,86364 x 2,"Tissue Transglutaminase, IgA & IgG Abs","Serum Gold, SST",,1-2 Days,AED 112.50
+5109025,82465,Total Cholesterol,"Serum / Plasma Gold, SST",,24H,AED 12.00
+5109001,83550,"Total Iron-Binding Capacity, TIBC","Serum Gold, SST",,24H,AED 15.00
+5109023,84155,Total Protein,"Serum / Plasma Gold, SST",,24H,AED 11.50
+5104903,84436,"Total Thyroxine, T4","Serum Gold, SST",,24H,AED 32.50
+5104900,84480,"Total Triiodothyronine, T3","Serum / Plasma Gold, SST",,24H,AED 30.00
+400,86777,Toxoplasma IgG,"Serum Gold, SST",,24H,AED 45.00
+401,86778,Toxoplasma IgM,"Serum Gold, SST",,24H,AED 45.00
+5104974,"86777, 86778","Toxoplasma, IgG & IgM Abs","Serum Gold, SST",,24H,AED 82.50
+5108998,84466,Transferrin,"Serum / Plasma Gold, SST",,24H,AED 15.00
+5109234,82270,"Transferrin, Stool","Stool, 5g Plastic Container, Non-Sterile",,3 Days,AED 52.50
+5109028,84478,Triglycerides,"Serum / Plasma Gold, SST",,24H,AED 12.00
+5109195,84484,Troponin I,"Serum Gold, SST",,24H,AED 49.50
+5118485,84484,Troponin I - High Sensitivity,"Serum Gold, SST",,24H,AED 56.50
+5118486,84484,Troponin T,"Serum Gold, SST",,24H,AED 49.50
+5118487,84484,Troponin T - High Sensitivity,"Serum Gold, SST",,24H,AED 56.50
+5104981,83520,TSH Receptor Abs,"Serum Gold, SST",,7-10 Days,AED 100.00
+5108997,84540,Urea,"Serum / Plasma Gold, SST",,24H,AED 12.00
+5104984,84540,"Urea, Urine","Urine, 24H Sample Plastic Container, Non-Sterile",,24H,AED 15.00
+5104987,84550,"Uric Acid, Serum","Serum / Plasma Gold, SST",,24H,AED 13.50
+5104908,84560,"Uric Acid, Urine","Urine, 24H Sample Plastic Container, Sterile",,24H,AED 20.00
+5104781,"82310, 82570",Urine Calcium/Creatine Ratio,"Urine, 24H Sample Plastic Container, Non-Sterile",,7 Days,AED 25.00
+5104913,86787,"Varicella Zoster Virus, IgG & IgM Abs","Serum Gold, SST",,24H,AED 100.00
+5104915,84590,"Vitamin A, Total","Serum (Light Protected) Gold, SST",,7 Days,AED 135.00
+5104918,84425,"Vitamin B1, Total","Whole Blood (Light Protected) Lavender, EDTA",,7 Days,AED 135.00
+5104922,82607,"Vitamin B12, Total","Serum Gold, SST",,24H,AED 30.00
+5104770,84252,"Vitamin B2, Total","Whole Blood (Light Protected) Lavender, EDTA",,7 Days,AED 135.00
+5118494,84591,"Vitamin B3, Total","Serum / Plasma Gold, SST",,14 Days,AED 350.00
+5118495,84591,"Vitamin B5, Total","Whole Blood Lavender, EDTA",,20 Days,AED 295.00
+5104774,84207,"Vitamin B6, Total","Whole Blood (Light Protected) Lavender, EDTA",,7 Days,AED 135.00
+5109168,84591,"Vitamin B7, Total","Serum Gold, SST",,15 Days,AED 285.00
+5104777,82746,"Vitamin B9, Total","Serum Gold, SST",,24H,AED 37.50
+5104780,82180,"Vitamin C, Total","Plasma Green, Heparin",,7 Days,AED 135.00
+5104850,84446,"Vitamin E, Total","Serum (Light Protected) Gold, SST",,7-10 Days,AED 158.50
+5104857,84597,"Vitamin K, Total","Whole Blood (Light Protected) Gold, SST",,26 Days,AED 160.00
+5104860,84630,"Zinc, Zn","Serum Gold, SST",,24H,AED 35.00
+435,82542,Coenzyme Q10,"Serum Green, Heparin (Light-Protected)",,14-21 Days,AED 700.00
