@@ -1,3 +1,6 @@
+Here is the updated `README.md` for your project:
+
+```markdown
 # Razee AI Engine - Microservices
 
 ## Overview
@@ -13,9 +16,9 @@ This project consists of FastAPI-based microservices designed for the Razee appl
 
 ## Prerequisites
 
-- Python 3.7 or higher
+- Docker and Docker Compose installed
 - AWS account with S3 bucket configured
-- Tesseract OCR installed
+- Tesseract OCR installed on the Docker image
 - LangChain API key (if using specific models)
 
 ## Installation
@@ -27,50 +30,21 @@ git clone https://github.com/yourusername/razee_microservices.git
 cd razee_microservices
 ```
 
-### 2. Set Up a Virtual Environment
+### 2. Build and Run the Docker Container
+
+Build the Docker image:
 
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+docker build -t razee_microservices .
 ```
 
-### 3. Install Dependencies
-
-Create a `requirements.txt` file with the following content:
-
-```plaintext
-fastapi==0.68.2
-uvicorn==0.15.0
-python-dotenv==0.19.0
-boto3==1.18.0
-langchain==0.2.0
-langchain-community==0.2.0
-pytesseract==0.3.7
-Pillow==8.0.0
-moviepy==1.0.3
-speechrecognition==3.8.1
-pytest==6.2.4
-```
-
-Then install the dependencies:
+Run the Docker container:
 
 ```bash
-pip install -r requirements.txt
+docker run -d -p 8000:8000 --name razee_microservices razee_microservices
 ```
 
-### 4. Install Tesseract OCR
-
-```bash
-# On macOS using Homebrew
-brew install tesseract
-
-# On Ubuntu
-sudo apt-get install tesseract-ocr
-
-# On Windows
-# Download the installer from https://github.com/UB-Mannheim/tesseract/wiki
-# and follow the installation instructions
-```
+The application will be accessible at `http://127.0.0.1:8000`.
 
 ## Configuration
 
@@ -97,13 +71,7 @@ KMS_KEY_ID=your_kms_key_id
 
 ## Running the Application
 
-Start the FastAPI application with:
-
-```bash
-uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-```
-
-The application will be accessible at `http://127.0.0.1:8000`.
+Start the FastAPI application with Docker as described in the Installation section.
 
 ## Endpoints
 
@@ -133,7 +101,7 @@ The application will be accessible at `http://127.0.0.1:8000`.
 
 ## Testing
 
-To run tests, use `pytest`. Make sure your virtual environment is activated.
+To run tests, use `pytest`. Make sure your virtual environment is activated and the Docker container is not running:
 
 ```bash
 pytest app/tests/test_upload.py
@@ -237,3 +205,6 @@ Users on macOS may encounter issues with the `pydantic_core` package due to arch
 ## Contact
 
 For any questions or issues related to the Razee application, please contact nader@razee.app.
+```
+
+Feel free to adjust any details as needed!
