@@ -5,6 +5,7 @@ import io
 
 router = APIRouter()
 
+
 @router.post("/ocr")
 async def ocr(file: UploadFile = File(...)):
     try:
@@ -15,6 +16,6 @@ async def ocr(file: UploadFile = File(...)):
         image = Image.open(io.BytesIO(await file.read()))
         text = pytesseract.image_to_string(image)
         return {"text": text}
-    
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
