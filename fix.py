@@ -16,6 +16,7 @@ directories = [
     'app/utils'
 ]
 
+
 # Function to check and create __init__.py
 def ensure_init_py(directory_list):
     for directory in directory_list:
@@ -27,6 +28,7 @@ def ensure_init_py(directory_list):
             print(f"Created __init__.py in {directory}")
         else:
             print(f"__init__.py already exists in {directory}")
+
 
 if __name__ == "__main__":
     ensure_init_py(directories)

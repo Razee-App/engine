@@ -38,3 +38,9 @@ s3_bucket/
 # Misc
 .DS_Store
 *.csv
+
+
+#pycharm
+*.idea
+*.idea
+#cbzdfhfsdzbcz

@@ -10,6 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')
 
 client = TestClient(app)
 
+
 def test_upload():
     # Create a temporary file to upload
     with tempfile.NamedTemporaryFile(delete=False) as temp_file:
@@ -22,13 +23,14 @@ def test_upload():
                 "/api/v1/test-upload",
                 files={"file": (temp_file.name, file, "text/plain")}
             )
-    
+
     # Clean up the temporary file
     os.remove(temp_file.name)
 
     assert response.status_code == 200
     assert "message" in response.json()
     print(response.json())
+
 
 if __name__ == "__main__":
     pytest.main()
