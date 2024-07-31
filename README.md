@@ -1,6 +1,4 @@
-Here is the updated `README.md` for your project:
-
-```markdown
+Got it! Here’s the updated `README.md` with the correct URL:
 # Razee AI Engine - Microservices
 
 ## Overview
@@ -30,21 +28,51 @@ git clone https://github.com/yourusername/razee_microservices.git
 cd razee_microservices
 ```
 
-### 2. Build and Run the Docker Container
+### 2. Configure Localhost Entry
 
-Build the Docker image:
+To ensure the application is accessible via `localhost`, add an entry to your hosts file. This is needed for Docker Compose to resolve the `engine.razee.app` hostname correctly.
 
-```bash
-docker build -t razee_microservices .
-```
+#### macOS and Linux
 
-Run the Docker container:
+Open the terminal and run:
 
 ```bash
-docker run -d -p 8000:8000 --name razee_microservices razee_microservices
+sudo nano /etc/hosts
 ```
 
-The application will be accessible at `http://127.0.0.1:8000`.
+Add the following line to the file:
+
+```
+127.0.0.1 engine.razee.app
+```
+
+Save the file and exit (Ctrl+X, then Y, then Enter).
+
+#### Windows
+
+Open Notepad as Administrator and open the file:
+
+```
+C:\Windows\System32\drivers\etc\hosts
+```
+
+Add the following line to the file:
+
+```
+127.0.0.1 engine.razee.app
+```
+
+Save the file and close Notepad.
+
+### 3. Build and Run the Docker Container
+
+Build the Docker image and start the containers using Docker Compose:
+
+```bash
+docker-compose up --build
+```
+
+The application will be accessible at `http://engine.razee.app:8000`.
 
 ## Configuration
 
@@ -159,6 +187,7 @@ your_project/
 ├── .env
 ├── .gitignore
 ├── Dockerfile
+├── docker-compose.yml
 ├── requirements.txt
 ├── README.md
 ├── setup.py
@@ -204,7 +233,5 @@ Users on macOS may encounter issues with the `pydantic_core` package due to arch
 
 ## Contact
 
-For any questions or issues related to the Razee application, please contact nader@razee.app.
+For any questions or issues related to the Razee application, please contact support@razee.app.
 ```
-
-Feel free to adjust any details as needed!
