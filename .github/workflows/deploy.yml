@@ -35,8 +35,16 @@ jobs:
         run: |
           echo "$SSH_PRIVATE_KEY" > id_rsa
           chmod 600 id_rsa
+          
+          # Check if .env file exists before trying to copy it
+          if [ -f ".env" ]; then
+            scp -i id_rsa -o StrictHostKeyChecking=no .env root@${{ secrets.DROPLET_IP }}:/root/
+          else
+            echo ".env file not found. Skipping .env file upload."
+          fi
+          
           scp -i id_rsa -o StrictHostKeyChecking=no docker-compose.yml root@${{ secrets.DROPLET_IP }}:/root/
-          scp -i id_rsa -o StrictHostKeyChecking=no .env root@${{ secrets.DROPLET_IP }}:/root/
+          
           ssh -i id_rsa -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} "
             docker pull ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest
             docker-compose -f /root/docker-compose.yml up -d
