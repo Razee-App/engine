@@ -50,6 +50,7 @@ jobs:
           
           # SSH into Droplet, login to Docker Hub, and run docker-compose
           ssh -i id_rsa -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} "
+            apt-get update && apt-get install -y docker-compose
             echo $DOCKER_ACCESS_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
             docker-compose -f /root/docker-compose.yml pull
             docker-compose -f /root/docker-compose.yml up -d
