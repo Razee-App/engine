@@ -1,6 +1,5 @@
-Here is the updated `README.md` for your project:
-
-```markdown
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Razee-App/razee-ios/build.yml?branch=main)](https://github.com/Razee-App/razee-ios/actions)
+[![License](https://img.shields.io/github/license/Razee-App/razee-web)](https://github.com/Razee-App/razee-web/blob/main/LICENSE)
 # Razee AI Engine - Microservices
 
 ## Overview
@@ -204,7 +203,5 @@ Users on macOS may encounter issues with the `pydantic_core` package due to arch
 
 ## Contact
 
-For any questions or issues related to the Razee application, please contact nader@razee.app.
+For any questions or issues related to the Razee application, please contact support@razee.app.
 ```
-
-Feel free to adjust any details as needed!
