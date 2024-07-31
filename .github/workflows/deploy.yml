@@ -56,3 +56,4 @@ jobs:
               apt-get update && apt-get install -y docker-compose
               docker-compose -f /root/docker-compose.yml up -d --build
             "
+  
