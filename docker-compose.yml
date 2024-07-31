@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   fastapi:
-    image: ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest
+    image: "${DOCKER_USERNAME}/razee-engine:latest"
     container_name: fastapi_service
     environment:
       - SECRET_KEY=${SECRET_KEY}
