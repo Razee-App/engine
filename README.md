@@ -1,4 +1,5 @@
-Got it! Here’s the updated `README.md` with the correct URL:
+[![Build Status](https://img.shields.io/github/actions/workflow/status/Razee-App/razee-ios/build.yml?branch=main)](https://github.com/Razee-App/razee-ios/actions)
+[![License](https://img.shields.io/github/license/Razee-App/engine)](https://github.com/Razee-App/engine/blob/main/LICENSE)
 # Razee AI Engine - Microservices
 
 ## Overview
