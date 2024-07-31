@@ -32,20 +32,25 @@ jobs:
       - name: Deploy to DigitalOcean Droplet
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
         run: |
           echo "$SSH_PRIVATE_KEY" > id_rsa
           chmod 600 id_rsa
           
-          # Check if .env file exists before trying to copy it
+          # Upload .env file if it exists
           if [ -f ".env" ]; then
             scp -i id_rsa -o StrictHostKeyChecking=no .env root@${{ secrets.DROPLET_IP }}:/root/
           else
             echo ".env file not found. Skipping .env file upload."
           fi
           
+          # Upload docker-compose.yml
           scp -i id_rsa -o StrictHostKeyChecking=no docker-compose.yml root@${{ secrets.DROPLET_IP }}:/root/
           
+          # SSH into Droplet and log in to Docker, then deploy using docker-compose
           ssh -i id_rsa -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} "
-            docker pull ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest
-            docker-compose -f /root/docker-compose.yml up -d
+            echo $DOCKER_ACCESS_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
+            docker pull $DOCKER_USERNAME/razee-engine:latest
+            docker-compose -f /root/docker-compose.yml --env-file /root/.env up -d
           "
