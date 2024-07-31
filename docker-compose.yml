@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   fastapi:
-    image: "${DOCKER_USERNAME}/razee-engine:latest"
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: fastapi_service
     environment:
       - SECRET_KEY=${SECRET_KEY}

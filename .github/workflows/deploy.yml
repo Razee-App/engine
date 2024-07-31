@@ -34,26 +34,18 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          DROPLET_IP: ${{ secrets.DROPLET_IP }}
         run: |
           echo "$SSH_PRIVATE_KEY" > id_rsa
           chmod 600 id_rsa
-          
-          # Upload .env file if it exists
-          if [ -f ".env" ]; then
-            scp -i id_rsa -o StrictHostKeyChecking=no .env root@${{ secrets.DROPLET_IP }}:/root/
-          else
-            echo ".env file not found. Skipping .env file upload."
-          fi
-          
-          # Upload docker-compose.yml
-          scp -i id_rsa -o StrictHostKeyChecking=no docker-compose.yml root@${{ secrets.DROPLET_IP }}:/root/
-          
+
+          # Transfer all necessary files to the Droplet
+          scp -i id_rsa -o StrictHostKeyChecking=no -r * root@${DROPLET_IP}:/root/
+
           # SSH into Droplet, login to Docker Hub, and run docker-compose
-          ssh -i id_rsa -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} "
+          ssh -i id_rsa -o StrictHostKeyChecking=no root@${DROPLET_IP} "
             export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
             export DOCKER_ACCESS_TOKEN=${{ secrets.DOCKER_ACCESS_TOKEN }}
             apt-get update && apt-get install -y docker-compose
-            echo $DOCKER_ACCESS_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-            docker-compose -f /root/docker-compose.yml pull
-            docker-compose -f /root/docker-compose.yml up -d
+            docker-compose -f /root/docker-compose.yml up -d --build
           "
