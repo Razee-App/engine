@@ -48,10 +48,9 @@ jobs:
           # Upload docker-compose.yml
           scp -i id_rsa -o StrictHostKeyChecking=no docker-compose.yml root@${{ secrets.DROPLET_IP }}:/root/
           
-          # SSH into Droplet to install Docker Compose and deploy using docker-compose
+          # SSH into Droplet, login to Docker Hub, and run docker-compose
           ssh -i id_rsa -o StrictHostKeyChecking=no root@${{ secrets.DROPLET_IP }} "
-            apt-get update && apt-get install -y docker-compose
             echo $DOCKER_ACCESS_TOKEN | docker login -u $DOCKER_USERNAME --password-stdin
-            docker pull $DOCKER_USERNAME/razee-engine:latest
-            docker-compose -f /root/docker-compose.yml --env-file /root/.env up -d
+            docker-compose -f /root/docker-compose.yml pull
+            docker-compose -f /root/docker-compose.yml up -d
           "
