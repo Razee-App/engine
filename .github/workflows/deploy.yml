@@ -54,7 +54,7 @@ jobs:
           scp -o StrictHostKeyChecking=no -r nginx root@${DROPLET_IP}:/root/app/
           scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/app/
 
-          # SSH into Droplet, set environment variables, and run docker-compose
+          # SSH into Droplet, set environment variables, stop existing containers, and run docker-compose
           ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "
             cd /root/app
             echo 'DOCKER_USERNAME=$DOCKER_USERNAME' > .env
@@ -64,6 +64,14 @@ jobs:
             echo 'S3_REGION=$S3_REGION' >> .env
             echo 'S3_BUCKET=$S3_BUCKET' >> .env
             echo 'KMS_KEY_ID=$KMS_KEY_ID' >> .env
+            
+            # Stop and remove existing containers
+            docker-compose down
+            
+            # Remove any leftover containers
+            docker rm -f nginx_service fastapi_service || true
+            
+            # Pull latest images and start services
             docker-compose pull
             docker-compose up -d
           "

@@ -1,22 +1,30 @@
-FROM python:3.10-slim
+# docker-compose.yml remains the same
+version: '3.8'
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+services:
+  fastapi:
+    image: ${DOCKER_USERNAME}/razee-engine:latest
+    container_name: fastapi_service
+    env_file:
+      - .env
+    expose:
+      - "8000"
+    networks:
+      - backend
 
-WORKDIR /app
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_service
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./certs:/etc/nginx/certs
+    networks:
+      - backend
 
-COPY requirements.txt /app/
-COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
-COPY ./nginx/conf.d /etc/nginx/conf.d
-
-RUN pip install --no-cache-dir -r requirements.txt
-
-RUN apt-get update && \
-    apt-get install -y tesseract-ocr && \
-    rm -rf /var/lib/apt/lists/*
-
-COPY . /app/
-
-EXPOSE 8000
-
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+networks:
+  backend:
+    driver: bridge
