@@ -35,7 +35,7 @@ jobs:
             DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
             DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
             DROPLET_IP: ${{ secrets.DROPLET_IP }}
-          run: |
+        run: |
             # Start SSH agent and add the private key
             eval "$(ssh-agent -s)"
             echo "$SSH_PRIVATE_KEY" | ssh-add -
