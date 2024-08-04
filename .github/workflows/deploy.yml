@@ -1,4 +1,3 @@
-# GitHub Actions Workflow File (.github/workflows/deploy.yml)
 name: Deploy to DigitalOcean
 
 on:
@@ -7,12 +6,14 @@ on:
       - main
 
 jobs:
-  deploy:
+  build_and_push:
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -27,8 +28,23 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest
+
+  deploy:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update docker-compose.yml
+        run: |
+          sed -i 's|build:|image: ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest|g' docker-compose.yml
+          sed -i '/context:/d' docker-compose.yml
+          sed -i '/dockerfile:/d' docker-compose.yml
 
       - name: Deploy to DigitalOcean Droplet
         env:
@@ -42,19 +58,15 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           KMS_KEY_ID: ${{ secrets.KMS_KEY_ID }}
         run: |
-          # Start SSH agent and add the private key
           eval "$(ssh-agent -s)"
           echo "$SSH_PRIVATE_KEY" | ssh-add -
 
-          # Create necessary directories
           ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "mkdir -p /root/app/nginx /root/app/certs"
 
-          # Transfer files to the correct locations
           scp -o StrictHostKeyChecking=no docker-compose.yml root@${DROPLET_IP}:/root/app/
           scp -o StrictHostKeyChecking=no -r nginx root@${DROPLET_IP}:/root/app/
           scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/app/
 
-          # SSH into Droplet, set environment variables, and run docker-compose
           ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "
             cd /root/app
             echo 'DOCKER_USERNAME=$DOCKER_USERNAME' > .env
@@ -64,6 +76,9 @@ jobs:
             echo 'S3_REGION=$S3_REGION' >> .env
             echo 'S3_BUCKET=$S3_BUCKET' >> .env
             echo 'KMS_KEY_ID=$KMS_KEY_ID' >> .env
+            
+            docker-compose down
+            docker rm -f nginx_service fastapi_service || true
             docker-compose pull
             docker-compose up -d
           "
