@@ -1,3 +1,4 @@
+# GitHub Actions Workflow File (.github/workflows/deploy.yml)
 name: Deploy to DigitalOcean
 
 on:
@@ -8,10 +9,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -31,30 +32,42 @@ jobs:
 
       - name: Deploy to DigitalOcean Droplet
         env:
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-            DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-            DROPLET_IP: ${{ secrets.DROPLET_IP }}
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+          DROPLET_IP: ${{ secrets.DROPLET_IP }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          KMS_KEY_ID: ${{ secrets.KMS_KEY_ID }}
         run: |
-            # Start SSH agent and add the private key
-            eval "$(ssh-agent -s)"
-            echo "$SSH_PRIVATE_KEY" | ssh-add -
-        
-            # Create necessary directories
-            ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "mkdir -p /root/app/nginx /root/app/certs"
-        
-            # Transfer files to the correct locations
-            scp -o StrictHostKeyChecking=no docker-compose.yml root@${DROPLET_IP}:/root/app/
-            scp -o StrictHostKeyChecking=no nginx/nginx.conf root@${DROPLET_IP}:/root/app/nginx/
-            scp -o StrictHostKeyChecking=no -r nginx/conf.d root@${DROPLET_IP}:/root/app/nginx/
-            scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/app/
-        
-            # SSH into Droplet, login to Docker Hub, and run docker-compose
-            ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "
-              cd /root/app
-              export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
-              export DOCKER_ACCESS_TOKEN=${{ secrets.DOCKER_ACCESS_TOKEN }}
-              docker login -u $DOCKER_USERNAME -p $DOCKER_ACCESS_TOKEN
-              docker-compose pull
-              docker-compose up -d --build
-            "
+          # Start SSH agent and add the private key
+          eval "$(ssh-agent -s)"
+          echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+          # Create necessary directories
+          ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "mkdir -p /root/app/nginx /root/app/certs"
+
+          # Transfer files to the correct locations
+          scp -o StrictHostKeyChecking=no docker-compose.yml root@${DROPLET_IP}:/root/app/
+          scp -o StrictHostKeyChecking=no Dockerfile root@${DROPLET_IP}:/root/app/
+          scp -o StrictHostKeyChecking=no -r nginx root@${DROPLET_IP}:/root/app/
+          scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/app/
+
+          # SSH into Droplet, set environment variables, and run docker-compose
+          ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "
+            cd /root/app
+            export DOCKER_USERNAME='$DOCKER_USERNAME'
+            export DOCKER_ACCESS_TOKEN='$DOCKER_ACCESS_TOKEN'
+            export SECRET_KEY='$SECRET_KEY'
+            export AWS_ACCESS_KEY_ID='$AWS_ACCESS_KEY_ID'
+            export AWS_SECRET_ACCESS_KEY='$AWS_SECRET_ACCESS_KEY'
+            export S3_REGION='$S3_REGION'
+            export S3_BUCKET='$S3_BUCKET'
+            export KMS_KEY_ID='$KMS_KEY_ID'
+            docker login -u $DOCKER_USERNAME -p $DOCKER_ACCESS_TOKEN
+            docker-compose pull
+            docker-compose up -d --build
+          "
