@@ -1,4 +1,3 @@
-# GitHub Actions Workflow File (.github/workflows/deploy.yml)
 name: Deploy to DigitalOcean
 
 on:
