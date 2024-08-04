@@ -2,17 +2,10 @@ version: '3.8'
 
 services:
   fastapi:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ${DOCKER_USERNAME}/razee-engine:latest
     container_name: fastapi_service
-    environment:
-      - SECRET_KEY=${SECRET_KEY}
-      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-      - S3_REGION=${S3_REGION}
-      - S3_BUCKET=${S3_BUCKET}
-      - KMS_KEY_ID=${KMS_KEY_ID}
+    env_file:
+      - .env
     expose:
       - "8000"
     networks:
