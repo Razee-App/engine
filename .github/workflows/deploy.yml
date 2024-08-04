@@ -35,24 +35,26 @@ jobs:
             DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
             DOCKER_ACCESS_TOKEN: ${{ secrets.DOCKER_ACCESS_TOKEN }}
             DROPLET_IP: ${{ secrets.DROPLET_IP }}
-        run: |
-          # Start SSH agent and add the private key
-          eval "$(ssh-agent -s)"
-          echo "$SSH_PRIVATE_KEY" | ssh-add -
-            # Ensure the destination directory exists
-            ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "mkdir -p /root/nginx"
-  
-            # Transfer the nginx.conf file to the correct location on the Droplet
-            scp -o StrictHostKeyChecking=no nginx/nginx.conf root@${DROPLET_IP}:/root/nginx/nginx.conf
-  
-            # Transfer other necessary files
-            scp -o StrictHostKeyChecking=no -r nginx/conf.d root@${DROPLET_IP}:/root/nginx/
-            scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/
-  
+          run: |
+            # Start SSH agent and add the private key
+            eval "$(ssh-agent -s)"
+            echo "$SSH_PRIVATE_KEY" | ssh-add -
+        
+            # Create necessary directories
+            ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "mkdir -p /root/app/nginx /root/app/certs"
+        
+            # Transfer files to the correct locations
+            scp -o StrictHostKeyChecking=no docker-compose.yml root@${DROPLET_IP}:/root/app/
+            scp -o StrictHostKeyChecking=no nginx/nginx.conf root@${DROPLET_IP}:/root/app/nginx/
+            scp -o StrictHostKeyChecking=no -r nginx/conf.d root@${DROPLET_IP}:/root/app/nginx/
+            scp -o StrictHostKeyChecking=no -r certs root@${DROPLET_IP}:/root/app/
+        
             # SSH into Droplet, login to Docker Hub, and run docker-compose
             ssh -o StrictHostKeyChecking=no root@${DROPLET_IP} "
+              cd /root/app
               export DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}
               export DOCKER_ACCESS_TOKEN=${{ secrets.DOCKER_ACCESS_TOKEN }}
-              apt-get update && apt-get install -y docker-compose
-              docker-compose -f /root/docker-compose.yml up -d --build
+              docker login -u $DOCKER_USERNAME -p $DOCKER_ACCESS_TOKEN
+              docker-compose pull
+              docker-compose up -d --build
             "
