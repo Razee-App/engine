@@ -1,141 +1,68 @@
-from fastapi import APIRouter, UploadFile, File, HTTPException, Form
+from fastapi import APIRouter, Form, HTTPException
 from typing import List
-import boto3
-from langchain.chains import LLMChain
-from langchain_community.llms import OpenAI
+import pandas as pd
+import numpy as np
+from pinecone import Pinecone
+from sklearn.feature_extraction.text import TfidfVectorizer
 from app.core.config import Config
 import os
 
 router = APIRouter()
 config = Config()
 
-MAX_FILE_SIZE = 10 * 1024 * 1024  # 10 MB
-ALLOWED_EXTENSIONS = {'.jpeg', '.jpg', '.png', '.pdf', '.txt'}  # Added .txt for document uploads
+VECTOR_DIMENSION = 1536  # Set this to match your Pinecone index dimension
 
-def get_s3_client():
-    return boto3.client(
-        's3',
-        aws_access_key_id=config.AWS_ACCESS_KEY_ID,
-        aws_secret_access_key=config.AWS_SECRET_ACCESS_KEY,
-        region_name=config.S3_REGION
-    )
+def get_pinecone_index():
+    pc = Pinecone(api_key=config.PINECONE_API_KEY)
+    return pc.Index("personalized-tests")  # Replace with your actual index name
 
-def get_langchain():
-    llm = OpenAI(model="text-davinci-003")  # Update model if needed
-    return LLMChain(llm=llm)
-
-def validate_file(file: UploadFile):
-    if file.size > MAX_FILE_SIZE:
-        raise HTTPException(status_code=400, detail="File size exceeds the limit")
+def simple_embed(text):
+    vectorizer = TfidfVectorizer()
+    vector = vectorizer.fit_transform([text]).toarray()[0]
     
-    _, ext = os.path.splitext(file.filename)
-    if ext.lower() not in ALLOWED_EXTENSIONS:
-        raise HTTPException(status_code=400, detail="Invalid file type")
-
-@router.post("/upload-document")
-async def upload_document(file: UploadFile = File(...)):
-    try:
-        validate_file(file)
-        if not file.content_type.startswith('text'):
-            raise HTTPException(status_code=400, detail="Invalid file type for document upload")
-
-        s3_client = get_s3_client()
-        bucket_name = config.S3_BUCKET
-        s3_key = f'documents/{file.filename}'
-
-        s3_client.upload_fileobj(file.file, bucket_name, s3_key)
-
-        #file.file.seek(0)
-        #langchain = get_langchain()
-        #text = langchain.run(file.file.read().decode('utf-8'))
-
-        return {
-            "message": "Document uploaded and processed successfully",
-            "text": text,
-            "s3_url": f"https://{bucket_name}.s3.amazonaws.com/{s3_key}"
-        }
+    if len(vector) < VECTOR_DIMENSION:
+        padding = np.zeros(VECTOR_DIMENSION - len(vector))
+        vector = np.concatenate([vector, padding])
+    else:
+        vector = vector[:VECTOR_DIMENSION]
     
-    except HTTPException as http_exp:
-        raise http_exp
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return vector.tolist()
 
-@router.post("/lab-test")
-async def upload_lab_test(
-    hasLabTest: bool = Form(...),
-    hasMedicalReport: bool = Form(...),
-    userId: str = Form(...),
-    labTestFiles: List[UploadFile] = File(None),
-    medicalReportFiles: List[UploadFile] = File(None)
+@router.post("/recommend-tests")
+async def recommend_tests(
+    healthGoals: List[str] = Form(...),
+    currentDiseases: List[str] = Form(...),
+    userId: str = Form(...)
 ):
     try:
-        s3_client = get_s3_client()
-        bucket_name = config.S3_BUCKET
+        # Load the lab tests data
+        lab_tests_df = pd.read_csv("app/datasets/Lab-Tests-Sample.csv")
+        
+        # Prepare the prompt
+        prompt = f"Health Goals: {', '.join(healthGoals)}. Current Diseases: {', '.join(currentDiseases)}"
 
-        lab_test_urls = []
-        medical_report_urls = []
+        # Generate embeddings using our simple embed function
+        user_embedding = simple_embed(prompt)
 
-        if labTestFiles:
-            for file in labTestFiles:
-                validate_file(file)
-                s3_key = f'lab_tests/{userId}/{file.filename}'
-                s3_client.upload_fileobj(file.file, bucket_name, s3_key)
-                lab_test_urls.append(f"https://{bucket_name}.s3.amazonaws.com/{s3_key}")
+        # Query Pinecone to find similar lab tests based on embeddings
+        index = get_pinecone_index()
+        query_result = index.query(vector=user_embedding, top_k=5, include_values=True)
 
-        if medicalReportFiles:
-            for file in medicalReportFiles:
-                validate_file(file)
-                s3_key = f'medical_reports/{userId}/{file.filename}'
-                s3_client.upload_fileobj(file.file, bucket_name, s3_key)
-                medical_report_urls.append(f"https://{bucket_name}.s3.amazonaws.com/{s3_key}")
-
-        # Here you would typically save the data to your database
-        # For example:
-        # save_lab_test_data(userId, hasLabTest, hasMedicalReport, lab_test_urls, medical_report_urls)
-
-        return {
-            "message": "Lab test information received and files uploaded successfully",
-            "labTestUrls": lab_test_urls,
-            "medicalReportUrls": medical_report_urls
-        }
-
-    except HTTPException as http_exp:
-        raise http_exp
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/test-upload")
-async def test_upload(file: UploadFile = File(...)):
-    try:
-        validate_file(file)
-        bucket_name = config.S3_BUCKET
-        s3_key = f'test/{file.filename}'
-
-        s3_client = get_s3_client()
-        s3_client.upload_fileobj(file.file, bucket_name, s3_key)
+        # Extract test names and details for the recommended lab tests
+        recommended_tests = []
+        for match in query_result['matches']:
+            test_id = match['id']
+            test_info = lab_tests_df[lab_tests_df['Test ID'] == int(test_id)].to_dict('records')
+            if test_info:  # Check if a matching test was found
+                recommended_tests.extend(test_info)
+            else:
+                print(f"Warning: No test found for ID {test_id}")
 
         return {
-            "message": f'File uploaded successfully',
-            "s3_url": f"https://{bucket_name}.s3.amazonaws.com/{s3_key}"
+            "userId": userId,
+            "recommendedTests": recommended_tests
         }
-    
-    except HTTPException as http_exp:
-        raise http_exp
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
-@router.get("/print-config")
-async def print_config():
-    try:
-        config_values = {
-            'SECRET_KEY': config.SECRET_KEY,
-            'AWS_ACCESS_KEY_ID': config.AWS_ACCESS_KEY_ID,
-            'AWS_SECRET_ACCESS_KEY': config.AWS_SECRET_ACCESS_KEY,
-            'S3_REGION': config.S3_REGION,
-            'S3_BUCKET': config.S3_BUCKET,
-            'KMS_KEY_ID': config.KMS_KEY_ID
-        }
-        return config_values
-    
     except Exception as e:
+        print(f"Error in recommend_tests: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))

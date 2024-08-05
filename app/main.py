@@ -23,6 +23,7 @@ app = FastAPI()
 app.include_router(document_service.router, prefix="/api/v1", tags=["Document Service"])
 app.include_router(ocr_service.router, prefix="/api/v1", tags=["OCR Service"])
 app.include_router(video_service.router, prefix="/api/v1", tags=["Video Service"])
+app.include_router(video_service.router, prefix="/api/v1", tags=["Test Service"])
 
 @app.get("/")
 def read_root():

@@ -44,3 +44,5 @@ s3_bucket/
 *.idea
 *.idea
 #cbzdfhfsdzbcz
+
+data/*
