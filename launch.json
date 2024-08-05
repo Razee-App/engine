@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "FastAPI: Uvicorn",
+        "type": "python",
+        "request": "launch",
+        "module": "uvicorn",
+        "args": [
+          "main:app",  // Replace with your FastAPI app location, e.g., "myapp:app"
+          "--host",
+          "127.0.0.1",
+          "--port",
+          "8000",
+          "--reload"  // Optional: Automatically reload the server on code changes
+        ],
+        "jinja": true,
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}"
+        },
+        "console": "integratedTerminal",
+        "justMyCode": true
+      }
+    ]
+  }
+  
