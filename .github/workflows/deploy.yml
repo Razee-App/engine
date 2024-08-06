@@ -60,7 +60,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $DROPLET_IP >> ~/.ssh/known_hosts
 
-          # Copy necessary files to the server
+          # Copy necessary files and directories to the server
           scp -i ~/.ssh/id_rsa docker-compose.yml root@${DROPLET_IP}:/root/app/
           scp -i ~/.ssh/id_rsa -r nginx root@${DROPLET_IP}:/root/app/
           scp -i ~/.ssh/id_rsa -r certs root@${DROPLET_IP}:/root/app/
