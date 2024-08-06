@@ -32,16 +32,25 @@ jobs:
             git pull origin main
 
             # Stop and remove all containers
-            docker-compose down
-            docker rm -f $(docker ps -aq) || true
+            docker-compose down --remove-orphans
+            docker rm -f \$(docker ps -aq) || true
             
-            # Remove all images to ensure we're using the latest version
-            docker rmi -f $(docker images -aq) || true
+            # Remove all images
+            docker rmi -f \$(docker images -aq) || true
             
+            # Remove all volumes
+            docker volume rm \$(docker volume ls -q) || true
+            
+            # Remove all networks
+            docker network prune -f
+
+            # Clean up any leftover Docker resources
+            docker system prune -af --volumes
+
             # Pull the latest images and start the services
             docker-compose pull
             docker-compose up -d
-            
+
             # Print the logs for debugging
             docker-compose logs
           EOF
