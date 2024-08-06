@@ -83,7 +83,7 @@ jobs:
             AI71_API_KEY=$AI71_API_KEY
             PINECONE_API_KEY=$PINECONE_API_KEY
             PINECONE_REGION=$PINECONE_REGION
-            EOT
+EOT
             
             # Stop and remove all containers
             docker-compose down
