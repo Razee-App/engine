@@ -83,8 +83,17 @@ jobs:
             echo "PINECONE_API_KEY=$PINECONE_API_KEY" >> .env
             echo "PINECONE_REGION=$PINECONE_REGION" >> .env
             
+            # Stop and remove all containers
             docker-compose down
             docker rm -f \$(docker ps -aq) || true
+            
+            # Remove all images to ensure we're using the latest version
+            docker rmi -f \$(docker images -aq) || true
+            
+            # Pull the latest images and start the services
             docker-compose pull
             docker-compose up -d
+            
+            # Print the logs for debugging
+            docker-compose logs
           EOF
