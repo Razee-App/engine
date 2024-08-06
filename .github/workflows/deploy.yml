@@ -29,7 +29,7 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest
 
@@ -39,12 +39,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Update docker-compose.yml
-        run: |
-          sed -i 's|build:|image: ${{ secrets.DOCKER_USERNAME }}/razee-engine:latest|g' docker-compose.yml
-          sed -i '/context:/d' docker-compose.yml
-          sed -i '/dockerfile:/d' docker-compose.yml
 
       - name: Deploy to DigitalOcean Droplet
         env:
@@ -82,6 +76,11 @@ jobs:
             echo "AI71_API_KEY=$AI71_API_KEY" >> .env
             echo "PINECONE_API_KEY=$PINECONE_API_KEY" >> .env
             echo "PINECONE_REGION=$PINECONE_REGION" >> .env
+            
+            # Ensure Nginx configuration files exist
+            mkdir -p nginx/conf.d
+            touch nginx/nginx.conf
+            touch nginx/conf.d/default.conf
             
             # Stop and remove all containers
             docker-compose down
