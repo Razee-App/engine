@@ -13,6 +13,9 @@ services:
       - S3_REGION=${S3_REGION}
       - S3_BUCKET=${S3_BUCKET}
       - KMS_KEY_ID=${KMS_KEY_ID}
+      - AI71_API_KEY=${AI71_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_REGION=${PINECONE_REGION}
     expose:
       - "8000"
     networks:

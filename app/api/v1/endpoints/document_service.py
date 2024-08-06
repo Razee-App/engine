@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Form, UploadFile, File
 from typing import List
 from pydantic import BaseModel
 import boto3
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI  # Updated import
 from langchain.schema import HumanMessage, SystemMessage
 from app.core.config import Config
 from dotenv import load_dotenv
@@ -67,28 +67,44 @@ def create_custom_embedding(text):
     
     return embedding.tolist()
 
-def extract_test_names(ai_response_content):
-    test_name_pattern = r'(?<=\d\.\s)(.*?)(?=:|\.|\n|$)'
-    test_names = re.findall(test_name_pattern, ai_response_content)
-    return [name.strip() for name in test_names if name.strip()]
+def extract_test_info(ai_response_content):
+    pattern = r'(\d+\.\s)(.*?)(?=:\s*Reason:|\.|\n|$)'
+    test_infos = re.findall(pattern, ai_response_content)
+    
+    tests_with_reasons = []
+    for idx, name in enumerate(test_infos):
+        test_name = name[1].strip()
+        reason_pattern = fr"{re.escape(name[0])}\s*{re.escape(test_name)}\s*:\s*Reason:(.*?)(?=\n\d|$)"
+        reason_match = re.search(reason_pattern, ai_response_content, re.DOTALL)
+        reason = reason_match.group(1).strip() if reason_match else "No reason provided."
+        
+        tests_with_reasons.append({
+            "name": test_name,
+            "reason": reason
+        })
+    
+    return tests_with_reasons
 
 @router.post("/recommend-tests")
 async def recommend_tests(request: RecommendTestsRequest):
     try:
-        prompt = f"Based on the health goals: {', '.join(request.healthGoals)} and the current diseases: {', '.join(request.currentDiseases)}, what are the best lab tests to recommend? Please provide a numbered list of specific test names."
+        # Initial prompt to get recommended tests
+        prompt = f"Based on the health goals: {', '.join(request.healthGoals)} and the current diseases: {', '.join(request.currentDiseases)}, what are the best lab tests to recommend? Please provide a numbered list of specific test names with a brief reason for each test."
 
         ai_response = chat.invoke(
             [
-                SystemMessage(content="You are an AI assistant trained to recommend lab tests. Provide specific test names that would typically be found in a medical lab's catalog."),
+                SystemMessage(content="You are an AI assistant trained to recommend lab tests. Provide specific test names along with reasons that would typically be found in a medical lab's catalog."),
                 HumanMessage(content=prompt),
             ]
         )
 
-        recommended_test_names = extract_test_names(ai_response.content)
+        recommended_tests_info = extract_test_info(ai_response.content)
         index = get_pinecone_index()
         recommended_tests = []
 
-        for test_name in recommended_test_names:
+        for test_info in recommended_tests_info:
+            test_name = test_info["name"]
+
             # First, try an exact match
             exact_match = index.query(
                 vector=[0] * VECTOR_DIMENSION,  # Dummy vector for metadata-only query
@@ -98,9 +114,11 @@ async def recommend_tests(request: RecommendTestsRequest):
             )
 
             if exact_match['matches']:
-                test_info = exact_match['matches'][0]['metadata']
-                recommended_tests.append(test_info)
-                logger.info(f"Found exact match in Pinecone for: {test_name}")
+                test_metadata = exact_match['matches'][0]['metadata']
+                reason = await get_test_reason_from_ai(test_name, request.healthGoals, request.currentDiseases)
+                test_metadata['reason'] = reason
+                recommended_tests.append(test_metadata)
+                logger.info(f"Found exact match in Pinecone for: {test_name} with reason: {reason}")
             else:
                 # If no exact match, use vector search as a fallback
                 query_embedding = create_custom_embedding(test_name)
@@ -111,9 +129,11 @@ async def recommend_tests(request: RecommendTestsRequest):
                 )
 
                 if query_response['matches']:
-                    test_info = query_response['matches'][0]['metadata']
-                    recommended_tests.append(test_info)
-                    logger.info(f"Found similar test in Pinecone for: {test_name}")
+                    test_metadata = query_response['matches'][0]['metadata']
+                    reason = await get_test_reason_from_ai(test_name, request.healthGoals, request.currentDiseases)
+                    test_metadata['reason'] = reason
+                    recommended_tests.append(test_metadata)
+                    logger.info(f"Found similar test in Pinecone for: {test_name} with reason: {reason}")
                 else:
                     logger.warning(f"No matching lab test found in Pinecone for: {test_name}")
 
@@ -129,6 +149,23 @@ async def recommend_tests(request: RecommendTestsRequest):
     except Exception as e:
         logger.error(f"Unexpected error occurred: {str(e)}")
         raise HTTPException(status_code=500, detail="An unexpected error occurred")
+
+async def get_test_reason_from_ai(test_name: str, health_goals: List[str], current_diseases: List[str]) -> str:
+    """
+    Make an AI call to get the reason for recommending a specific lab test.
+    """
+    prompt = f"Why would a lab test named '{test_name}' be recommended for a patient with the health goals: {', '.join(health_goals)} and the current diseases: {', '.join(current_diseases)}?"
+    
+    ai_response = chat.invoke(
+        [
+            SystemMessage(content="You are an AI assistant trained to provide medical recommendations."),
+            HumanMessage(content=prompt),
+        ]
+    )
+    
+    # Extract and return the reason from the AI response
+    reason = ai_response.content.strip()
+    return reason if reason else "No reason provided."
 
 @router.post("/upload-lab-tests")
 async def upload_lab_tests(
