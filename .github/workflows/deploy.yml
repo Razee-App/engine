@@ -60,6 +60,9 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $DROPLET_IP >> ~/.ssh/known_hosts
 
+          # Ensure the destination directory exists on the remote server
+          ssh -i ~/.ssh/id_rsa root@${DROPLET_IP} "mkdir -p /root/app"
+
           # Copy necessary files and directories to the server
           scp -i ~/.ssh/id_rsa docker-compose.yml root@${DROPLET_IP}:/root/app/docker-compose.yml
           scp -i ~/.ssh/id_rsa -r nginx/ root@${DROPLET_IP}:/root/app/nginx/
