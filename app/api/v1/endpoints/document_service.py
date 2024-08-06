@@ -152,7 +152,7 @@ async def recommend_tests(request: RecommendTestsRequest):
 
 async def get_test_reason_from_ai(test_name: str, health_goals: List[str], current_diseases: List[str]) -> str:
     """
-    Make an AI call to get the reason for recommending a specific lab test.
+    Make an AI call to get the reason in a very layman way for recommending a specific lab test.
     """
     prompt = f"Why would a lab test named '{test_name}' be recommended for a patient with the health goals: {', '.join(health_goals)} and the current diseases: {', '.join(current_diseases)}?"
     

@@ -10,7 +10,7 @@ load_dotenv()
 
 # Configuration variables
 AI_MODEL = "gpt-4o-mini"  # Set this to "falcon" or "gpt-4o-mini"
-MAX_ITEMS = 10  # Set to None to process all items
+MAX_ITEMS = None  # Set to None to process all items
 
 # Model-specific configurations
 MODEL_CONFIGS = {
@@ -44,7 +44,7 @@ def get_test_description(test_name):
     try:
         messages = [
             SystemMessage(content="You are a helpful assistant."),
-            HumanMessage(content=f"Provide a detailed scientific description of the following lab test: {test_name}, only description nothing from you")
+            HumanMessage(content=f"Provide a detailed scientific description of the following lab test: {test_name}, and the purpose of conducting such test and benefits for patience in terms of health outcome")
         ]
         response = chat.stream(messages)
         description = ""

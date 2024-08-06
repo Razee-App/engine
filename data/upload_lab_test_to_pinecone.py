@@ -25,7 +25,6 @@ def get_pinecone_index():
     return pc.Index("personalized-tests")  # Replace with your actual index name
 
 def clean_data(data):
-    # Convert null values to empty strings or 0 for numeric fields
     cleaned = {}
     for k, v in data.items():
         if pd.isna(v):
@@ -61,7 +60,7 @@ async def upload_batch(index, batch):
 
 async def upload_lab_tests_to_pinecone():
     try:
-        lab_tests_df = pd.read_csv("data/labTests.csv")  # Update the path if necessary
+        lab_tests_df = pd.read_csv("data/datasets/lab_tests_ingested_with_descriptions_final.csv")
         index = get_pinecone_index()
 
         batches = []
@@ -76,10 +75,11 @@ async def upload_lab_tests_to_pinecone():
                 "Sample Type": row['Sample Type'],
                 "Container": row['Container'],
                 "TAT": row['TAT'],
-                "Price (AED)": row['Price (AED)']
+                "Price (AED)": row['Price (AED)'],
+                "Description": row['Description']
             })
             
-            text_to_embed = f"{test_info['Test Name']} {test_info['Sample Type']}"
+            text_to_embed = f"{test_info['Test Name']} {test_info['Description']}"
             embedding = create_custom_embedding(text_to_embed)
 
             current_batch.append({
@@ -98,7 +98,7 @@ async def upload_lab_tests_to_pinecone():
         await asyncio.gather(*[upload_batch(index, batch) for batch in batches])
 
         logger.info("Lab tests data upload to Pinecone completed!")
-
+    
     except Exception as e:
         logger.error(f"Failed to upload lab tests data to Pinecone: {str(e)}")
 
