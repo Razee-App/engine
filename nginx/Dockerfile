@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 nginx:alpine
+FROM  nginx:alpine
 
 # Create necessary directories
 RUN mkdir -p /etc/nginx/certs /etc/nginx/conf.d
