@@ -12,6 +12,7 @@ ENV/
 env.bak/
 venv.bak/
 new_env/
+*.csv
 
 # Testing
 .pytest_cache/
