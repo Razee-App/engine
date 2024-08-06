@@ -60,22 +60,27 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H $DROPLET_IP >> ~/.ssh/known_hosts
 
+          # Copy necessary files to the server
           scp -i ~/.ssh/id_rsa docker-compose.yml root@${DROPLET_IP}:/root/app/
           scp -i ~/.ssh/id_rsa -r nginx root@${DROPLET_IP}:/root/app/
           scp -i ~/.ssh/id_rsa -r certs root@${DROPLET_IP}:/root/app/
 
           ssh -i ~/.ssh/id_rsa root@${DROPLET_IP} << EOF
             cd /root/app
-            echo "DOCKER_USERNAME=$DOCKER_USERNAME" > .env
-            echo "SECRET_KEY=$SECRET_KEY" >> .env
-            echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> .env
-            echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> .env
-            echo "S3_REGION=$S3_REGION" >> .env
-            echo "S3_BUCKET=$S3_BUCKET" >> .env
-            echo "KMS_KEY_ID=$KMS_KEY_ID" >> .env
-            echo "AI71_API_KEY=$AI71_API_KEY" >> .env
-            echo "PINECONE_API_KEY=$PINECONE_API_KEY" >> .env
-            echo "PINECONE_REGION=$PINECONE_REGION" >> .env
+
+            # Create and populate the .env file
+            cat <<EOT > .env
+            DOCKER_USERNAME=$DOCKER_USERNAME
+            SECRET_KEY=$SECRET_KEY
+            AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+            AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+            S3_REGION=$S3_REGION
+            S3_BUCKET=$S3_BUCKET
+            KMS_KEY_ID=$KMS_KEY_ID
+            AI71_API_KEY=$AI71_API_KEY
+            PINECONE_API_KEY=$PINECONE_API_KEY
+            PINECONE_REGION=$PINECONE_REGION
+            EOT
             
             # Ensure Nginx configuration files exist
             mkdir -p nginx/conf.d
