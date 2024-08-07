@@ -71,6 +71,10 @@ Pipfile.lock
 # poetry
 poetry.lock
 
+# Certificates
+certs
+certs/*
+
 # Celery stuff
 celerybeat-schedule
 celerybeat.pid
