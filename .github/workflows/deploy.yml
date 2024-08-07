@@ -27,7 +27,8 @@ jobs:
           ssh -i ~/.ssh/id_rsa root@${DROPLET_IP} << EOF
             # Navigate to the app directory
             cp ../.env /root/engine/
-            cp ../certs /root/engine/
+            mkdir -p /root/engine/certs
+            cp ../certs/* /root/engine/certs/
             cd /root/engine
            
 
