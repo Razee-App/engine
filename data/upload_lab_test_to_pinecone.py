@@ -60,7 +60,7 @@ async def upload_batch(index, batch):
 
 async def upload_lab_tests_to_pinecone():
     try:
-        lab_tests_df = pd.read_csv("data/datasets/lab_tests_ingested_with_descriptions_final.csv")
+        lab_tests_df = pd.read_csv("data/datasets/lab_tests_ingested_with_descriptions_final_with_tags.csv")
         index = get_pinecone_index()
 
         batches = []
@@ -76,18 +76,20 @@ async def upload_lab_tests_to_pinecone():
                 "Container": row['Container'],
                 "TAT": row['TAT'],
                 "Price (AED)": row['Price (AED)'],
-                "Description": row['Description']
+                "Description": row['Description'],
+                "Tags": row['Tags']
             })
             
-            text_to_embed = f"{test_info['Test Name']} {test_info['Description']}"
+            # Combine Test Name and Tags for embedding, excluding Description
+            text_to_embed = f"{test_info['Test Name']} {test_info['Tags']}"
             embedding = create_custom_embedding(text_to_embed)
-
+            
             current_batch.append({
                 'id': str(test_id),
                 'values': embedding,
                 'metadata': test_info
             })
-
+            
             if len(current_batch) == BATCH_SIZE:
                 batches.append(current_batch)
                 current_batch = []

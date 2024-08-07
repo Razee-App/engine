@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Form, UploadFile, File
 from typing import List
 from pydantic import BaseModel
 import boto3
-from langchain_openai import ChatOpenAI  # Updated import
+from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage, SystemMessage
 from app.core.config import Config
 from dotenv import load_dotenv
@@ -85,15 +85,32 @@ def extract_test_info(ai_response_content):
     
     return tests_with_reasons
 
+async def get_test_reason_from_ai(test_name: str, health_goals: List[str], current_diseases: List[str]) -> str:
+    """
+    Make an AI call to get a simple, one-sentence reason for recommending a specific chemical lab test for 18 years old to understand.
+    """
+    prompt = f"Provide a simple, one-sentence explanation for why a chemical lab test named '{test_name}' would be important for a patient with the health goals: {', '.join(health_goals)} and the current diseases: {', '.join(current_diseases)}. Use everyday language."
+    
+    ai_response = chat.invoke(
+        [
+            SystemMessage(content="You are an AI assistant trained to explain chemical lab tests in simple terms."),
+            HumanMessage(content=prompt),
+        ]
+    )
+    
+    # Extract and return the reason from the AI response
+    reason = ai_response.content.strip()
+    return reason if reason else "No specific reason provided."
+
 @router.post("/recommend-tests")
 async def recommend_tests(request: RecommendTestsRequest):
     try:
-        # Initial prompt to get recommended tests
-        prompt = f"Based on the health goals: {', '.join(request.healthGoals)} and the current diseases: {', '.join(request.currentDiseases)}, what are the best lab tests to recommend? Please provide a numbered list of specific test names with a brief reason for each test."
+        # Updated prompt to focus on chemical lab tests
+        prompt = f"Based on the health goals: {', '.join(request.healthGoals)} and the current diseases: {', '.join(request.currentDiseases)}, what are the best chemical lab tests to recommend? Please provide a numbered list of 5-7 specific chemical test names."
 
         ai_response = chat.invoke(
             [
-                SystemMessage(content="You are an AI assistant trained to recommend lab tests. Provide specific test names along with reasons that would typically be found in a medical lab's catalog."),
+                SystemMessage(content="You are an AI assistant trained to recommend chemical lab tests. Provide specific test names that would typically be found in a medical lab's catalog."),
                 HumanMessage(content=prompt),
             ]
         )
@@ -150,24 +167,7 @@ async def recommend_tests(request: RecommendTestsRequest):
         logger.error(f"Unexpected error occurred: {str(e)}")
         raise HTTPException(status_code=500, detail="An unexpected error occurred")
 
-async def get_test_reason_from_ai(test_name: str, health_goals: List[str], current_diseases: List[str]) -> str:
-    """
-    Make an AI call to get the reason in a very layman way for recommending a specific lab test.
-    """
-    prompt = f"Why would a lab test named '{test_name}' be recommended for a patient with the health goals: {', '.join(health_goals)} and the current diseases: {', '.join(current_diseases)}?"
-    
-    ai_response = chat.invoke(
-        [
-            SystemMessage(content="You are an AI assistant trained to provide medical recommendations."),
-            HumanMessage(content=prompt),
-        ]
-    )
-    
-    # Extract and return the reason from the AI response
-    reason = ai_response.content.strip()
-    return reason if reason else "No reason provided."
-
-@router.post("/upload-lab-tests")
+@router.post("/lab-test")
 async def upload_lab_tests(
     hasLabTest: bool = Form(...),
     hasMedicalReport: bool = Form(...),
@@ -207,6 +207,53 @@ async def upload_lab_tests(
     except Exception as e:
         logger.error(f"Error uploading files: {str(e)}")
         raise HTTPException(status_code=500, detail="An error occurred while uploading files")
+
+@router.post("/save-id")
+async def save_payment_info(
+    paymentMethod: str = Form(...),
+    insuranceDetails: str = Form(...),
+    userId: str = Form(...),
+    emiratesIdFile: UploadFile = File(...),
+    insuranceCardFile: UploadFile = File(None)
+):
+    try:
+        s3_client = get_s3_client()
+        bucket_name = config.S3_BUCKET
+
+        emirates_id_url = ""
+        insurance_card_url = ""
+
+        # Validate and upload Emirates ID/Passport file
+        validate_file(emiratesIdFile)
+        emirates_id_key = f'payment_docs/{userId}/emirates_id_{emiratesIdFile.filename}'
+        s3_client.upload_fileobj(emiratesIdFile.file, bucket_name, emirates_id_key)
+        emirates_id_url = f"https://{bucket_name}.s3.amazonaws.com/{emirates_id_key}"
+
+        # Validate and upload Insurance Card file if provided
+        if insuranceCardFile:
+            validate_file(insuranceCardFile)
+            insurance_card_key = f'payment_docs/{userId}/insurance_card_{insuranceCardFile.filename}'
+            s3_client.upload_fileobj(insuranceCardFile.file, bucket_name, insurance_card_key)
+            insurance_card_url = f"https://{bucket_name}.s3.amazonaws.com/{insurance_card_key}"
+
+        # Here you would typically save the payment information to your database
+        # For now, we'll just log it
+        logger.info(f"Payment info received for user {userId}: "
+                    f"Payment Method: {paymentMethod}, "
+                    f"Insurance Details: {insuranceDetails}")
+
+        return {
+            "message": "Payment information received and files uploaded successfully",
+            "emiratesIdFileUrl": emirates_id_url,
+            "insuranceCardFileUrl": insurance_card_url
+        }
+
+    except HTTPException as http_exp:
+        raise http_exp
+    except Exception as e:
+        logger.error(f"Error processing payment information: {str(e)}")
+        raise HTTPException(status_code=500, detail="An error occurred while processing payment information")
+
 
 @router.get("/print-config")
 async def print_config():
