@@ -26,7 +26,10 @@ jobs:
           # Deploy to DigitalOcean
           ssh -i ~/.ssh/id_rsa root@${DROPLET_IP} << EOF
             # Navigate to the app directory
+            cp ../.env /root/engine/
+            cp ../certs /root/engine/
             cd /root/engine
+           
 
             # Pull latest changes from the repository
             git pull origin main
